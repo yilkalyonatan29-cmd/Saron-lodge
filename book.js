@@ -19,7 +19,6 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   const b = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
-  if (b.website) return res.status(200).json({ ok: true }); // honeypot for bots
 
   const { name, phone, email, arrival, departure, rooms, adults, children, type, notes } = b;
   const nights = Math.round((new Date(departure) - new Date(arrival)) / 864e5);
